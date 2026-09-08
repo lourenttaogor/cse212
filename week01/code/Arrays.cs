@@ -49,19 +49,19 @@ public static class Arrays
         // be implemented by another person.
 
         // Plan:
-    // - The last 'amount' items in the list need to move to the front, and everything else
-    //   (the remaining items at the start) needs to shift after them, keeping their relative order.
-    // - Find the split point: splitIndex = data.Count - amount.
-    //   Example: data.Count = 9, amount = 3 -> splitIndex = 6.
-    //   That means index 6, 7, 8 (the values 7, 8, 9) are the "tail" that moves to the front.
-    // - Use GetRange to slice out two pieces:
-    //     tail = data.GetRange(splitIndex, amount)         -> last 'amount' items (e.g. {7,8,9})
-    //     head = data.GetRange(0, splitIndex)              -> everything before the tail (e.g. {1,2,3,4,5,6})
-    // - Since we must modify 'data' in place (not return a new list), clear it out first,
-    //   then add the tail back in, followed by the head. This rebuilds the list in rotated order.
-    // - Performance: GetRange copies elements (O(n) combined for both slices), Clear is O(n),
-    //   and AddRange to rebuild is O(n) as well. All of these are single passes with no
-    //   nested loops, so overall this is O(n), where n is data.Count.
+        // - The last 'amount' items in the list need to move to the front, and everything else
+        //   (the remaining items at the start) needs to shift after them, keeping their relative order.
+        // - Find the split point: splitIndex = data.Count - amount.
+        //   Example: data.Count = 9, amount = 3 -> splitIndex = 6.
+        //   That means index 6, 7, 8 (the values 7, 8, 9) are the "tail" that moves to the front.
+        // - Use GetRange to slice out two pieces:
+        //     tail = data.GetRange(splitIndex, amount)         -> last 'amount' items (e.g. {7,8,9})
+        //     head = data.GetRange(0, splitIndex)              -> everything before the tail (e.g. {1,2,3,4,5,6})
+        // - Since we must modify 'data' in place (not return a new list), clear it out first,
+        //   then add the tail back in, followed by the head. This rebuilds the list in rotated order.
+        // - Performance: GetRange copies elements (O(n) combined for both slices), Clear is O(n),
+        //   and AddRange to rebuild is O(n) as well. All of these are single passes with no
+        //   nested loops, so overall this is O(n), where n is data.Count.
 
 
     var splitIndex = data.Count - amount; // index where the "tail" (items to move to front) begins
